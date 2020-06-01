@@ -51,14 +51,3 @@ except:
 !hdfs dfs -mkdir -p $STORAGE/datalake/data/churn
 !hdfs dfs -copyFromLocal /home/cdsw/raw/WA_Fn-UseC_-Telco-Customer-Churn-.csv $STORAGE/datalake/data/churn/WA_Fn-UseC_-Telco-Customer-Churn-.csv
 
-# Complete our YAML file
-yaml_text = \
-""""Model Explainer":
-  hive_table_qualified_names:                # this is a predefined key to link to training data
-    - "telco_churn.historical_data@cm"       # the qualifiedName of the hive_table object representing                
-  metadata:                                  # this is a predefined key for additional metadata
-    query: "select * from historical_data"   # suggested use case: query used to extract training data
-    training_file: "4_train_models.py"       # suggested use case: training file used
-"""
-
-with open('lineage.yml', 'w') as lineage: lineage.write(yaml_text)
