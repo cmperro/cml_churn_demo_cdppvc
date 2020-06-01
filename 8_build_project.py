@@ -136,6 +136,19 @@ run_experiment_params = {
 default_engine_details = cml.get_default_engine({})
 default_engine_image_id = default_engine_details["id"]
 
+# Create the YAML file for the model lineage
+yaml_text = \
+""""Model Explainer {}":
+  hive_table_qualified_names:                # this is a predefined key to link to training data
+    - "default.telco_churn@cm"               # the qualifiedName of the hive_table object representing                
+  metadata:                                  # this is a predefined key for additional metadata
+    query: "select * from historical_data"   # suggested use case: query used to extract training data
+    training_file: "4_train_models.py"       # suggested use case: training file used
+""".format(run_time_suffix)
+
+with open('lineage.yml', 'w') as lineage: lineage.write(yaml_text)
+
+
 # Create Model
 example_model_input = {"StreamingTV": "No", "MonthlyCharges": 70.35, "PhoneService": "No", "PaperlessBilling": "No", "Partner": "No", "OnlineBackup": "No", "gender": "Female", "Contract": "Month-to-month", "TotalCharges": 1397.475,
                        "StreamingMovies": "No", "DeviceProtection": "No", "PaymentMethod": "Bank transfer (automatic)", "tenure": 29, "Dependents": "No", "OnlineSecurity": "No", "MultipleLines": "No", "InternetService": "DSL", "SeniorCitizen": "No", "TechSupport": "No"}
