@@ -14,7 +14,7 @@ import seaborn as sns
 # Get the model id from the model you deployed in step 5. These are unique to each 
 # model on CML.
 
-model_id = "83"
+model_id = "88"
 
 # Get the various Model CRN details
 HOST = os.getenv("CDSW_API_URL").split(
