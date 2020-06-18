@@ -40,13 +40,14 @@ git repo in the `raw` folder.
 ***Deploy the Complete Project***
 
 If you just wish build the project artifacts without going through each step manually, 
-run the `8_build_projet.py` file in a python3 session. Again a 1 vCPU / 2 GiB instance 
+run the `9_build_projet.py` file in a python3 session. Again a 1 vCPU / 2 GiB instance 
 will be suffient. This script will: 
 * run the bootstrap
 * then create the Hive Table and import the data
 * deploy the model
 * update the application files to use this new model
 * deploy the application
+* run the model drift simulation
 Once the script has completed you will see the new model and application are now available 
 in the project.
 
@@ -227,15 +228,19 @@ and [Model Governance](https://docs.cloudera.com/machine-learning/cloud/model-go
 
 **Model Governance** is setup in the `0_bootstrap.py` script, which writes out the lineage.yml file at
 the start of the project. For the **Model Metrics** open a workbench session (1 vCPU / 2 GiB) and open the
-`7_model_operations.py` file. You need to set the `model_id` number from the model created in step 5 on line
-17. The model number is on the model's main page.
+`7_ml_ops_simulation.py` file. You need to set the `model_id` number from the model created in step 5 on line
+20. The model number is on the model's main page.
 
 ![model_id](images/model_id.png)
 
 `model_id = "95"`
 
-From there, run the file. This goes through a process of simulating an model that drifts over a period
-of 3 weeks and tracks and plots the drift. The file contains comments with details of how this is done.
+From there, run the file. This goes through a process of simulating an model that drifts over 
+over 1000 calls to the model. The file contains comments with details of how this is done.
+
+In the next step you can interact and display the model metrics. Open a workbench session 
+(1 vCPU / 2 GiB) and open the `8_ml_ops_visual.py` file. Again you need to set the 
+`model_id` number from the model created in step 5 on line 17. The model number is on the model's main page.
 
 ![model_accuracy](images/model_accuracy.png)
 

@@ -28,7 +28,7 @@ PROJECT_NAME = os.getenv("CDSW_PROJECT")
 # Instantiate API Wrapper
 cml = CMLBootstrap(HOST, USERNAME, API_KEY, PROJECT_NAME)
 
-# set the S3 bucket variable
+# set the storage variable to the default location
 try : 
   s3_bucket=os.environ["STORAGE"]
 except:
@@ -48,7 +48,8 @@ except:
 !hdfs dfs -copyFromLocal /home/cdsw/raw/WA_Fn-UseC_-Telco-Customer-Churn-.csv $STORAGE/datalake/data/churn/WA_Fn-UseC_-Telco-Customer-Churn-.csv
 
 
-### This will run the data ingest file. You need this
+# This will run the data ingest file. You need this to create the hive table from the 
+# csv file.
 exec(open("1_data_ingest.py").read())
 
 # Get User Details
@@ -201,6 +202,11 @@ while is_deployed == False:
 import subprocess
 subprocess.call(["sed", "-i",  's/const\saccessKey.*/const accessKey = "' + access_key + '";/', "/home/cdsw/flask/single_view.html"])
 
+# Change the model_id value in the 7_model_operations.py and 8_ml_ops_visual.py file
+subprocess.call(["sed", "-i",  's/model_id =.*/model_id = "' + model_id + '"/', "/home/cdsw/7_ml_ops_simulation.py"])
+subprocess.call(["sed", "-i",  's/model_id =.*/model_id = "' + model_id + '"/', "/home/cdsw/8_ml_ops_visual.py"])
+
+
 # Create Application
 create_application_params = {
     "name": "Explainer App",
@@ -232,3 +238,9 @@ while is_deployed == False:
     time.sleep(10)
 
 HTML("<a href='{}'>Open Application UI</a>".format(application_url))
+
+# This will run the model operations section that makes calls to the model to track 
+# mertics and track metric aggregations
+
+exec(open("7_ml_ops_simulation.py").read())
+
