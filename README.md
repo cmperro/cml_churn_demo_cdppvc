@@ -1,7 +1,7 @@
-# Churn Prediction Project Template
+# Churn Prediction Project Prototype
 This project is a Cloudera Machine Learning 
 ([CML](https://www.cloudera.com/products/machine-learning.html)) **Applied Machine Learning 
-Project Template**. It has all the code and data needed to deploy an end-to-end machine 
+Project Prototype**. It has all the code and data needed to deploy an end-to-end machine 
 learning project in a running CML instance.
 
 ## Project Overview
@@ -19,6 +19,17 @@ Regression and LIME models are then deployed using CML's real-time model deploym
 capability and finally a basic flask based web application is deployed that will let 
 you interact with the real-time model to see which factors in the data have the most 
 influence on the churn probability.
+
+By following the notebooks in this project, you will understand how to perform similar 
+classification tasks on CML as well as how to use the platform's major features to your 
+advantage. These features include **streamlined model experimentation**, 
+**point-and-click model deployment**, and **ML app hosting**.
+
+We will focus our attention on working within CML, using all it has to offer, while
+glossing over the details that are simply standard data science.
+We trust that you are familiar with typical data science workflows
+and do not need detailed explanations of the code.
+Notes that are *specific to CML* will be emphasized in **block quotes**.
 
 ### Initialize the Project
 There are a couple of steps needed at the start to configure the Project and Workspace 
@@ -40,7 +51,7 @@ git repo in the `raw` folder.
 ***Deploy the Complete Project***
 
 If you just wish build the project artifacts without going through each step manually, 
-run the `9_build_projet.py` file in a python3 session. Again a 1 vCPU / 2 GiB instance 
+run the `8_build_projet.py` file in a python3 session. Again a 1 vCPU / 2 GiB instance 
 will be suffient. This script will: 
 * run the bootstrap
 * then create the Hive Table and import the data
@@ -74,7 +85,7 @@ Open `1_data_ingest.py` in a Workbench session: python3, 1 CPU, 2 GB. Run the fi
 This is a Jupyter Notebook that does some basic data exploration and visualistaion. It 
 is to show how this would be part of the data science workflow.
 
-![data](images/data.png)
+![data](https://raw.githubusercontent.com/fletchjeff/cml_churn_demo_mlops/master/images/data.png)
 
 Open a Jupyter Notebook session (rather than a work bench): python3, 1 CPU, 2 GB and 
 open the `2_data_exploration.ipynb` file. 
@@ -228,8 +239,8 @@ and [Model Governance](https://docs.cloudera.com/machine-learning/cloud/model-go
 
 **Model Governance** is setup in the `0_bootstrap.py` script, which writes out the lineage.yml file at
 the start of the project. For the **Model Metrics** open a workbench session (1 vCPU / 2 GiB) and open the
-`7_ml_ops_simulation.py` file. You need to set the `model_id` number from the model created in step 5 on line
-20. The model number is on the model's main page.
+`7a_ml_ops_simulation.py` file. You need to set the `model_id` number from the model created in step 5 on line
+113. The model number is on the model's main page.
 
 ![model_id](images/model_id.png)
 
@@ -238,9 +249,10 @@ the start of the project. For the **Model Metrics** open a workbench session (1 
 From there, run the file. This goes through a process of simulating an model that drifts over 
 over 1000 calls to the model. The file contains comments with details of how this is done.
 
-In the next step you can interact and display the model metrics. Open a workbench session 
-(1 vCPU / 2 GiB) and open the `8_ml_ops_visual.py` file. Again you need to set the 
-`model_id` number from the model created in step 5 on line 17. The model number is on the model's main page.
+In the next step you can interact and display the model metrics. Open a workbench 
+session (1 vCPU / 2 GiB) and open and run the `7b_ml_ops_visual.py` file. Again you 
+need to set the `model_id` number from the model created in step 5 on line 53. 
+The model number is on the model's main page.
 
 ![model_accuracy](images/model_accuracy.png)
 

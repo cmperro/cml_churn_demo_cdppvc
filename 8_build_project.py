@@ -1,4 +1,4 @@
-## Run this file to auto deploy the model, run a job and deploy the application.
+## Run this file to auto deploy the model, run a job, and deploy the application
 
 # Install the requirements
 !pip3 install -r requirements.txt
@@ -202,9 +202,9 @@ while is_deployed == False:
 import subprocess
 subprocess.call(["sed", "-i",  's/const\saccessKey.*/const accessKey = "' + access_key + '";/', "/home/cdsw/flask/single_view.html"])
 
-# Change the model_id value in the 7_model_operations.py and 8_ml_ops_visual.py file
-subprocess.call(["sed", "-i",  's/model_id =.*/model_id = "' + model_id + '"/', "/home/cdsw/7_ml_ops_simulation.py"])
-subprocess.call(["sed", "-i",  's/model_id =.*/model_id = "' + model_id + '"/', "/home/cdsw/8_ml_ops_visual.py"])
+# Change the model_id value in the 7a_model_operations.py and 7b_ml_ops_visual.py file
+subprocess.call(["sed", "-i",  's/model_id =.*/model_id = "' + model_id + '"/', "/home/cdsw/7a_ml_ops_simulation.py"])
+subprocess.call(["sed", "-i",  's/model_id =.*/model_id = "' + model_id + '"/', "/home/cdsw/7b_ml_ops_visual.py"])
 
 
 # Create Application
@@ -242,5 +242,5 @@ HTML("<a href='{}'>Open Application UI</a>".format(application_url))
 # This will run the model operations section that makes calls to the model to track 
 # mertics and track metric aggregations
 
-exec(open("7_ml_ops_simulation.py").read())
+exec(open("7a_ml_ops_simulation.py").read())
 

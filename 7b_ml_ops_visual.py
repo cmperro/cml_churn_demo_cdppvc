@@ -1,5 +1,41 @@
-## Plot some Model Metrics
-# Here are some plots from the model metrics.  
+## Part 7b - Model Operations - Visualising Model Metrics
+
+# This is a continuation of the previous process started in the 
+# `7a_ml_ops_simulations.py` script.
+# Here we will load in the metrics saved to the model database in the previous step 
+# into a Pandas dataframe, and display different features as graphs. 
+
+#```python
+# help(cdsw.read_metrics)
+# Help on function read_metrics in module cdsw:
+#
+# read_metrics(model_deployment_crn=None, start_timestamp_ms=None, end_timestamp_ms=None, model_crn=None, model_build_crn=None)
+#    Description
+#    -----------
+#    
+#    Read metrics data for given Crn with start and end time stamp
+#    
+#    Parameters
+#    ----------
+#    model_deployment_crn: string
+#        model deployment Crn
+#    model_crn: string
+#        model Crn
+#    model_build_crn: string
+#        model build Crn
+#    start_timestamp_ms: int, optional
+#        metrics data start timestamp in milliseconds , if not passed
+#        default value 0 is used to fetch data
+#    end_timestamp_ms: int, optional
+#        metrics data end timestamp in milliseconds , if not passed
+#        current timestamp is used to fetch data
+#    
+#    Returns
+#    -------
+#    object
+#        metrics data
+#```
+ 
 
 import cdsw, time, os
 import pandas as pd
@@ -14,7 +50,7 @@ import seaborn as sns
 # Get the model id from the model you deployed in step 5. These are unique to each 
 # model on CML.
 
-model_id = "88"
+model_id = "92"
 
 # Get the various Model CRN details
 HOST = os.getenv("CDSW_API_URL").split(
@@ -35,7 +71,7 @@ Deployment_CRN = latest_model["latestModelDeployment"]["crn"]
 model_metrics = cdsw.read_metrics(model_crn=Model_CRN,model_deployment_crn=Deployment_CRN)
 
 # This is a handy way to unravel the dict into a big pandas dataframe.
-metrics_df = pd.io.json.json_normalize(model_metrics["metrics"]) # [metric_start_index:])
+metrics_df = pd.io.json.json_normalize(model_metrics["metrics"])
 metrics_df.tail().T
 
 # Do some conversions & calculations
