@@ -10,7 +10,7 @@ detail [this blog post](https://blog.cloudera.com/visual-model-interpretability-
 The initial idea and code comes from the FFL Interpretability report which is now freely 
 available and you can read the full report [here](https://ff06-2020.fastforwardlabs.com/)
 
-![table_view](images/table_view.png)
+![table_view](../images/table_view.png)
 
 The goal is to build a classifier model using Logistic Regression to predict the churn 
 probability for a group of customers from a telecoms company. On top that, the model 
