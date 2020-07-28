@@ -116,6 +116,9 @@ schema = StructType(
 
 storage = os.environ['STORAGE']
 
+if os.environ["STORAGE"] == "//tablespace":
+    os.environ["STORAGE"] = "/tmp"
+
 telco_data = spark.read.csv(
   "{}/datalake/data/churn/WA_Fn-UseC_-Telco-Customer-Churn-.csv".format(storage),
   header=True,
