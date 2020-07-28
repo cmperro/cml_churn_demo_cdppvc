@@ -42,6 +42,9 @@ except:
   storage_environment = cml.create_environment_variable(storage_environment_params)
   os.environ["STORAGE"] = s3_bucket
 
+if os.environ["STORAGE"] == "//tablespace":
+    os.environ["STORAGE"] = "/users/admin"
+
 !hdfs dfs -mkdir -p $STORAGE/datalake
 !hdfs dfs -mkdir -p $STORAGE/datalake/data
 !hdfs dfs -mkdir -p $STORAGE/datalake/data/churn
