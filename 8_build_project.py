@@ -43,7 +43,7 @@ except:
   os.environ["STORAGE"] = s3_bucket
 
 if os.environ["STORAGE"] == "//tablespace":
-    os.environ["STORAGE"] = "/users/admin"
+    os.environ["STORAGE"] = "/tmp"
 
 !hdfs dfs -mkdir -p $STORAGE/datalake
 !hdfs dfs -mkdir -p $STORAGE/datalake/data
