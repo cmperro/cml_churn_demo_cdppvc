@@ -50,6 +50,8 @@ except:
   storage_environment = cml.create_environment_variable(storage_environment_params)
   os.environ["STORAGE"] = storage
 
+os.environ["STORAGE"] = "/users/admin"
+
 # Upload the data to the cloud storage
 !hdfs dfs -mkdir -p $STORAGE/datalake
 !hdfs dfs -mkdir -p $STORAGE/datalake/data
