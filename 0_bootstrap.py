@@ -50,6 +50,10 @@ except:
   storage_environment = cml.create_environment_variable(storage_environment_params)
   os.environ["STORAGE"] = storage
 
+#Check for PvC
+if os.environ["STORAGE"] == "//tablespace":
+    os.environ["STORAGE"] = "/user/admin"
+
 # Upload the data to the cloud storage
 !hdfs dfs -mkdir -p $STORAGE/datalake
 !hdfs dfs -mkdir -p $STORAGE/datalake/data
