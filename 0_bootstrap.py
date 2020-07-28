@@ -52,7 +52,7 @@ except:
 
 
 if os.environ["STORAGE"] == "//tablespace":
-    os.environ["STORAGE"] = "/users/admin"
+    os.environ["STORAGE"] = "/tmp"
 
 # Upload the data to the cloud storage
 !hdfs dfs -mkdir -p $STORAGE/datalake
