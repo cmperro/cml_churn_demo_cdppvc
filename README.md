@@ -6,7 +6,7 @@ The goal of this project is to use pieces of the CML Churn Demo on CDP Private C
 Open the file `0_bootstrap_and_ingest.py` in a normal workbench python3 session. You only need a 
 1 CPU / 2 GB instance. Then **Run > Run All Lines**
 
-This script will read in the data csv from the file uploaded to the s3 bucket setup 
+This script will read in the data csv from the file uploaded to HDFS
 during the bootstrap and create a managed table in Hive. This is all done using Spark.
 
 ## 2 Explore Data
